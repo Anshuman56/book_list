@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Book I Read</h1>
+
+    <form action="/addbook" method="post">
+        <label for="bookName">Enter the Book name</label>
+        <input type="text" name="bookName" id="bookName">
+        <label for="bookAuthorName">Author name</label>
+        <input type="text" name="bookAuthorName" id="bookAuthorName">
+        <button type="submit">Sumbmit</button>
+    </form>
+    
+    <h2>Books</h2>
+
+<ul class="books">
+  <!-- Loop through quotes -->
+  <% for(var i = 0; i < books.length; i++) {%>
+  <li class="book">
+    <!-- Output name from the iterated quote object -->
+    <span><%= books[i].bookName %></span>:
+    <!-- Output quote from the iterated quote object -->
+    <span><%= books[i].bookAuthorName %></span>
+  </li>
+  <% } %>
+</ul>
+</body>
+</html>

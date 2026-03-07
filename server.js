@@ -3,6 +3,7 @@ let app = express();
 const MongoClient = require('mongodb').MongoClient;
 require("dotenv").config();
 
+app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
 
 
@@ -17,12 +18,18 @@ MongoClient.connect(process.env.MONGO_URL)
         .then(result => response.redirect('/'))
         .catch(err => console.error(err))
     })
+
+    app.get('/', (request, response) => {
+      booksCollection.find().toArray()
+        .then(result => {
+            response.render('index.ejs', {books: result})
+        })
+        .catch(err => console.error(err))
+        
+    })
 })
 .catch(err => console.error(err))
 
-app.get('/', (request, response) =>{
-    response.sendFile(__dirname + '/index.html')
-})
 
 
 
