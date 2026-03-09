@@ -5,6 +5,8 @@ require("dotenv").config();
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
+app.use(express.static('public'))
+app.use(express.json())
 
 
 MongoClient.connect(process.env.MONGO_URL)
@@ -26,6 +28,14 @@ MongoClient.connect(process.env.MONGO_URL)
         })
         .catch(err => console.error(err))
         
+    })
+
+    app.delete('/deleteBook', (request, response) =>{
+        booksCollection.deleteOne({bookName: request.body.bookName})
+        .then(result => {
+            response.json('book was deleted')
+        })
+        .catch(err => console.error(err))
     })
 })
 .catch(err => console.error(err))

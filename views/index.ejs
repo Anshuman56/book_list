@@ -22,12 +22,12 @@
   <!-- Loop through quotes -->
   <% for(var i = 0; i < books.length; i++) {%>
   <li class="book">
-    <!-- Output name from the iterated quote object -->
     <span><%= books[i].bookName %></span>:
-    <!-- Output quote from the iterated quote object -->
     <span><%= books[i].bookAuthorName %></span>
+    <button id = 'del'>Delete</button>
   </li>
   <% } %>
 </ul>
 </body>
+<script src="main.js"></script>
 </html>
