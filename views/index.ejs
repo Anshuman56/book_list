@@ -24,11 +24,20 @@
   <li class="book">
     <span><%= books[i].bookName %></span>:
     <span><%= books[i].bookAuthorName %></span>
-    <button id="edit">Edit</button>
-    <button id = 'del'>Delete</button>
+    <button id="edit" data-id="<%= books[i]._id %>">Edit</button>
+    <button id='del'>Delete</button>
   </li>
   <% } %>
 </ul>
+ 
+<h2>Update</h2>
+
+        <label for="bookName">Update the Book name</label>
+        <input type="text" id="updateBookName">
+        <label for="bookAuthorName">Update the Author name</label>
+        <input type="text" id="updateBookAuthorName">
+        <button id="update">Update</button>
+
 </body>
 <script src="main.js"></script>
 </html>

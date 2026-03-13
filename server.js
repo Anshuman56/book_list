@@ -1,4 +1,5 @@
 let express = require('express');
+const { ObjectId } = require('mongodb');
 let app = express();
 const MongoClient = require('mongodb').MongoClient;
 require("dotenv").config();
@@ -36,6 +37,22 @@ MongoClient.connect(process.env.MONGO_URL)
             response.json('book was deleted')
         })
         .catch(err => console.error(err))
+    })
+
+    app.put('/updateBook',(request, response) =>{
+        let id = new ObjectId(request.body.id)
+       booksCollection.findOneAndUpdate(
+        {_id:id},
+        {$set: {
+            bookName: request.body.name,
+            bookAuthorName: request.body.author
+        },},
+        {
+            upsert: true,
+        },
+       )
+       .then(result => response.json('Success'))
+       .catch(err => console.error(err))
     })
 })
 .catch(err => console.error(err))
